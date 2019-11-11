@@ -1,1 +1,41 @@
+# problem 4
+def loadWords(secretWord): 
+    import random
+    poolOfWords = ['samgyupsal', 'sinigang', 'tonkatsu', 'smirnoff', 'mozzarella']
+    secretWord = random.choice(poolOfWords)
+    return secretWord
+
+secretWord = ''
+secretWord = loadWords(secretWord)
+def Hangman(secretWord): 
+    print('Hello, Player 1! Welcome to Hangman :-)')
+    print ("Let us begin, the secret word has " + str(len(secretWord)) + " letters. Choose wisely ;)")
+    lettersGuessed = " "
+    guessesLeft = 10
+    while True:
+        print (str(guessesLeft) + " guesses left, good luck!")
+        print ("Choose from the available letters left: " + getAvailableLetters(lettersGuessed))
+        guessMade = input("Enter your guess: ")
+        
+        if guessMade not in lettersGuessed and guessMade in secretWord:
+            lettersGuessed += guessMade
+            print ("Awesome! You got a correct letter from the secret word: " + getGuessedWord(secretWord, lettersGuessed))
+            print ("Choose from the available letters left: " + getAvailableLetters(lettersGuessed))
+            
+        elif guessMade in lettersGuessed:
+            print ('Uh-oh! You already made that guess. Try again!'+ getGuessedWord(secretWord, lettersGuessed))
+            print ("Choose from the available letters left: " + getAvailableLetters(lettersGuessed))
+            
+        else: 
+            guessesLeft -= 1
+            lettersGuessed += guessMade
+            print ('Sorry! You guessed a wrong letter. Try again!' + getGuessedWord(secretWord, lettersGuessed))
+            print ("Choose from the available letters left: " + getAvailableLetters(lettersGuessed))
+            
+        if guessesLeft <= 0:
+            print("Aww. :'( You have no guesses left. The secret word is" + secretWord + ". Thanks for playing!")
+            break
+        if isWordGuessed(secretWord, lettersGuessed):
+            print ('HANGARIFIC! YOU WIN!')
+            break
 
