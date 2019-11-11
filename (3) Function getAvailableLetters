@@ -1,1 +1,8 @@
-
+# problem 3
+def getAvailableLetters(lettersGuessed):
+    lowerCase = 'abcdefghijklmnopqrstuvwxyz'
+    string2 = " "
+    for l in lowerCase:
+        if l not in lettersGuessed:
+            string2 += l 
+    return string2
