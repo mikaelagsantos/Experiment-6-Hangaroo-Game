@@ -1,20 +1,44 @@
+# problem 1
+def isWordGuessed(secretWord, lettersGuessed):
+    for l in secretWord:
+        if l not in lettersGuessed:
+            return False
+    return True
+
+# problem 2
+def getGuessedWord(secretWord, lettersGuessed):
+    string = " "
+    for l in secretWord:
+        if l in lettersGuessed:
+            string += l
+        else:
+            string += " _ "
+    return string
+
+# problem 3
+def getAvailableLetters(lettersGuessed):
+    lowerCase = 'abcdefghijklmnopqrstuvwxyz'
+    string2 = " "
+    for l in lowerCase:
+        if l not in lettersGuessed:
+            string2 += l 
+    return string2
+
 # problem 4
-def loadWords(secretWord): 
+secretWord = ''
+def Hangaroo(secretWord): 
     import random
     poolOfWords = ['samgyupsal', 'sinigang', 'tonkatsu', 'smirnoff', 'mozzarella']
     secretWord = random.choice(poolOfWords)
-    return secretWord
 
-secretWord = ''
-secretWord = loadWords(secretWord)
-def Hangman(secretWord): 
     print('Hello, Player 1! Welcome to Hangman :-)')
     print ("Let us begin, the secret word has " + str(len(secretWord)) + " letters. Choose wisely ;)")
     lettersGuessed = " "
+    print ("Choose from the available letters left: " + getAvailableLetters(lettersGuessed))
     guessesLeft = 10
+    
     while True:
         print (str(guessesLeft) + " guesses left, good luck!")
-        print ("Choose from the available letters left: " + getAvailableLetters(lettersGuessed))
         guessMade = input("Enter your guess: ")
         
         if guessMade not in lettersGuessed and guessMade in secretWord:
@@ -33,9 +57,12 @@ def Hangman(secretWord):
             print ("Choose from the available letters left: " + getAvailableLetters(lettersGuessed))
             
         if guessesLeft <= 0:
-            print("Aww. :'( You have no guesses left. The secret word is" + secretWord + ". Thanks for playing!")
+            print("Aww. :'( You have no guesses left. The secret word is " + secretWord + ". Thanks for playing!")
             break
         if isWordGuessed(secretWord, lettersGuessed):
             print ('HANGARIFIC! YOU WIN!')
             break
 
+
+
+    
